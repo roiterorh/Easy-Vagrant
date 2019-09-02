@@ -1,0 +1,8 @@
+defaults:
+  cpus: 4
+  image: "bento/ubuntu-16.04"
+  memory: 2048
+
+machine1:
+machine2:
+  memory: 1024
