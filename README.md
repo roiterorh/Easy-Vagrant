@@ -33,9 +33,9 @@ machine2:
 ```
 
 ### Run 
-
+```
 vagrant up
-
+```
 ### Access
 
 ```bash
