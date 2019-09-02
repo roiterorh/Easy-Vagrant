@@ -5,6 +5,7 @@ require 'yaml'
 machines = YAML.load_file('machines.yml')
 user= ENV['USER']
 default= machines.delete("defaults")
+File.write('hosts', machines.map{|e|"#{e[0]}.local"}.join("\n"))
 
 
 Vagrant.configure("2") do |config|
@@ -37,9 +38,9 @@ Vagrant.configure("2") do |config|
 
   machines.each.with_index{|vm,i|
   name= vm[0]
-  image=  vm[1] ? vm[1]["image"] : default["image"]
-  memory=  vm[1] ? vm[1]["memory"] : default["memory"]
-  cpus=  vm[1] ? vm[1]["cpus"] : default["cpus"]
+  image=  vm[1] ? vm[1]["image"] ? vm[1]["image"] : default["image"]: default["image"]
+  memory=  vm[1] ? vm[1]["memory"] ? vm[1]["memory"] : default["memory"]: default["memory"]
+  cpus=  vm[1] ? vm[1]["cpus"] ? vm[1]["cpus"] : default["cpus"]: default["cpus"]
 
   config.vm.define name do |minio|
     minio.vm.box =  image

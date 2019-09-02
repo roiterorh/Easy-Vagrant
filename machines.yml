@@ -6,3 +6,6 @@ defaults:
 machine1:
 machine2:
   memory: 1024
+
+machine3:
+  image:  "bento/ubuntu-18.04"
